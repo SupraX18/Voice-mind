@@ -113,20 +113,6 @@ export const useVoiceRecorder = () => {
     }
   }, [drawWaveform, stopRecording]);
 
-  // ── Stop ───────────────────────────────────────────────────────────────────
-  const stopRecording = useCallback(() => {
-    if (mediaRecorder.current && mediaRecorder.current.state !== 'inactive') {
-      mediaRecorder.current.stop();
-    }
-    if (streamRef.current) streamRef.current.getTracks().forEach(t => t.stop());
-    if (audioCtx.current)  audioCtx.current.close();
-    if (animFrame.current)  cancelAnimationFrame(animFrame.current);
-    if (timerRef.current)   clearInterval(timerRef.current);
-
-    setIsRecording(false);
-    setIsPaused(false);
-    setWaveformData([]);
-  }, []);
 
   const reset = useCallback(() => {
     stopRecording();
