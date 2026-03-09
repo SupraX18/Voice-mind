@@ -40,6 +40,21 @@ export const useVoiceRecorder = () => {
     animFrame.current = requestAnimationFrame(drawWaveform);
   }, []);
 
+  // ── Stop ───────────────────────────────────────────────────────────────────
+  const stopRecording = useCallback(() => {
+    if (mediaRecorder.current && mediaRecorder.current.state !== 'inactive') {
+      mediaRecorder.current.stop();
+    }
+    if (streamRef.current) streamRef.current.getTracks().forEach(t => t.stop());
+    if (audioCtx.current)  audioCtx.current.close();
+    if (animFrame.current)  cancelAnimationFrame(animFrame.current);
+    if (timerRef.current)   clearInterval(timerRef.current);
+
+    setIsRecording(false);
+    setIsPaused(false);
+    setWaveformData([]);
+  }, []);
+
   // ── Start ──────────────────────────────────────────────────────────────────
   const startRecording = useCallback(async () => {
     setError(null);
@@ -96,7 +111,7 @@ export const useVoiceRecorder = () => {
         setError(`Could not start recording: ${err.message}`);
       }
     }
-  }, [drawWaveform]);
+  }, [drawWaveform, stopRecording]);
 
   // ── Stop ───────────────────────────────────────────────────────────────────
   const stopRecording = useCallback(() => {

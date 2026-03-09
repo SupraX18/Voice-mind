@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../context/AuthContext';
-import { Trash2, ChevronDown, ChevronUp, History as HistIcon, AlertCircle } from 'lucide-react';
+import { Trash2, ChevronDown, ChevronUp, History as HistIcon } from 'lucide-react';
 
 const LEVEL_BG   = { Low:'rgba(52,211,153,0.1)',  Medium:'rgba(251,191,36,0.1)',  High:'rgba(244,63,94,0.1)'  };
 const LEVEL_COL  = { Low:'var(--emerald-400)',     Medium:'var(--amber-400)',      High:'var(--rose-400)'      };

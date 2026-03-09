@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useVoiceRecorder } from '../hooks/useVoiceRecorder';
 import { api } from '../context/AuthContext';
 import {
-  Mic, MicOff, Square, RotateCcw, Send,
+  Mic, Square, RotateCcw, Send,
   AlertCircle, CheckCircle, Zap, Heart, Wind, Brain,
 } from 'lucide-react';
 
