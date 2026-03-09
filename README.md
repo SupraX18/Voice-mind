@@ -257,9 +257,25 @@ gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
 ```
 
 ### Frontend
+
+**Vercel Deployment (Recommended)**
+Since this project is a monorepo (both backend and frontend in one repository), you must configure Vercel correctly:
+1. Import your GitHub repository to Vercel.
+2. In the **Configure Project** section, locate **Root Directory** and click `Edit`.
+3. Select `frontend` from the list and save.
+4. Framework Preset will auto-detect as **Create React App**.
+5. Change the **Build Command** if needed, but the default `npm run build` is correct.
+6. Open **Environment Variables** and add:
+   - Name: `REACT_APP_API_URL`
+   - Value: `<your-backend-url>` (e.g., `https://your-backend.onrender.com`)
+7. Click **Deploy**.
+
+*Note: The `vercel.json` is already included to handle React Router client-side routing.*
+
+**Manual Build**
 ```bash
 npm run build
-# Serve the build/ folder with nginx or a static host (Vercel, Netlify)
+# Serve the build/ folder with nginx or a static host
 ```
 
 ### Docker (optional)
