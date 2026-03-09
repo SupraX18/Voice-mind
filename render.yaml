@@ -2,13 +2,10 @@ services:
   - type: web
     name: voice-mind-api
     plan: free
-    env: python
+    env: docker
+    rootDir: backend
     region: oregon
-    buildCommand: "cd backend && pip install -r requirements.txt"
-    startCommand: "cd backend && gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker"
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.0
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
